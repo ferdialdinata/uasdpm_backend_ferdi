@@ -6,6 +6,7 @@ const router = express.Router();
 
 /**
  * @typedef {object} TodoRequest
+ * @property {string} day.required - Day of the week
  * @property {string} title.required - Title
  * @property {string} description - Description
  */
@@ -28,17 +29,6 @@ router.post('/', authMiddleware, TodoController.createTodo);
  * @return {object} 500 - Server error
  */
 router.get('/', authMiddleware, TodoController.getTodos);
-
-/**
- * GET /api/todos/{id}
- * @summary Get a todo by ID
- * @tags Todos
- * @param {string} id.path.required - Todo ID
- * @return {object} 200 - Todo data
- * @return {object} 404 - Todo not found
- * @return {object} 500 - Server error
- */
-router.get('/:id', authMiddleware, TodoController.getTodoById);
 
 /**
  * PUT /api/todos/{id}
